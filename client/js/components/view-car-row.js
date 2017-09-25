@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Car } from '../models/car';
 export class ViewCarRow extends React.Component {
 
   render() {

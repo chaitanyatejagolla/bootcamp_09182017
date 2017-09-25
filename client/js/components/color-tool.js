@@ -8,6 +8,8 @@ export class ColorTool extends React.Component {
       colorName: '',
       colorHexCode: ''
     };
+
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange(e) {
