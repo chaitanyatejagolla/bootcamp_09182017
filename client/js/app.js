@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { appStore } from './app-store';
 import * as carActionCreators from './actions/car-actions';
 import { refreshCars } from './actions/refresh-cars';

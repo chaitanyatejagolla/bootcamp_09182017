@@ -19,14 +19,6 @@
   ],
   "cars": [
     {
-      "id": 1,
-      "make": "GM",
-      "model": "Volt",
-      "year": 2013,
-      "color": "#996633",
-      "price": 2102
-    },
-    {
       "make": "Ford",
       "model": "T",
       "year": 2013,
@@ -49,6 +41,14 @@
       "color": "#996633",
       "price": 23000,
       "id": 4
+    },
+    {
+      "make": "Honda",
+      "model": "Accord2",
+      "year": 2013,
+      "color": "#00ffff",
+      "price": 23000,
+      "id": 5
     }
   ],
   "owners": [

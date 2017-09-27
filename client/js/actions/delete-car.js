@@ -11,7 +11,7 @@ export const deleteCar = carId => {
 
     dispatch(deleteCarRequest(carId));
 
-    return fetch('http://localhost:3010/car/' + encodeURIComponent(carId), {
+    return fetch('http://localhost:3010/cars/' + encodeURIComponent(carId), {
       method: 'DELETE',
     })
       .then(() => fetch('http://localhost:3010/cars'))
