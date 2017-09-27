@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { Car } from '../models/car';
-export class Form extends React.Component {
+import { BaseForm } from './base-form';
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.type === 'number' ? Number(e.target.value) : e.target.value
-    });
-  }
+export class Form extends BaseForm {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +15,7 @@ export class Form extends React.Component {
   }
 
   handleClick = () => {
-    this.props.onClick(new Car({...this.state}));
+    this.props.addCar(new Car({...this.state}));
     this.setState({
       make: '',
       model: '',

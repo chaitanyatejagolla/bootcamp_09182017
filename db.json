@@ -22,17 +22,33 @@
       "id": 1,
       "make": "GM",
       "model": "Volt",
-      "year": 2017,
-      "color": "blue",
-      "price": 21000
+      "year": 2013,
+      "color": "#996633",
+      "price": 2102
     },
     {
       "make": "Ford",
       "model": "T",
       "year": 2013,
-      "color": "red",
-      "price": 123,
+      "color": "#00ff00",
+      "price": 12,
       "id": 2
+    },
+    {
+      "make": "Honda",
+      "model": "City",
+      "year": 1990,
+      "color": "#00ff00",
+      "price": 21000,
+      "id": 3
+    },
+    {
+      "make": "Honda",
+      "model": "Accord",
+      "year": 2013,
+      "color": "#996633",
+      "price": 23000,
+      "id": 4
     }
   ],
   "owners": [

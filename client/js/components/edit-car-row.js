@@ -1,28 +1,47 @@
 import * as React from 'react';
-import { Car } from '../models/car';
-export class EditCarRow extends React.Component {
+import * as PropTypes from 'prop-types';
+import { BaseForm } from './base-form';
+export class EditCarRow extends BaseForm {
+
+  static propTypes = {
+    onSave: PropTypes.func,
+    onCancel: PropTypes.func,
+    car: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      make: PropTypes.string.isRequired,
+      model: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+      color: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    }),
+  };
+
+  emptyForm = () => ({
+    make: '',
+    model: '',
+    year: 0,
+    color: '',
+    price: 0,
+  });
+
   constructor(props) {
     super(props);
-    this.state = {
-      id: this.props.car.id,
-      make: this.props.car.make,
-      model: this.props.car.model,
-      year: this.props.car.year,
-      color: this.props.car.color,
-      price: this.props.car.price
-    };
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.type === 'number' ? Number(e.target.value) : e.target.value
-    });
+    if (this.props.car) {
+      this.state = { ...this.props.car };
+    } else {
+      this.state = this.emptyForm();
+    }
   }
 
   handleSave = () => {
-    this.props.onSave(
-      new Car({...this.state})
-    );
+    this.props.onSave({
+      ...this.state,
+      id: this.props.car.id,
+    });
+  }
+
+  handleCancel = () => {
+    this.props.onCancel();
   }
 
   render() {
@@ -35,7 +54,7 @@ export class EditCarRow extends React.Component {
       <td> <input type="number" value={this.state.price} name='price' onChange={this.handleChange} /></td>
       <td>
         <button type="button" onClick={this.handleSave}>Save</button>
-        <button type="button" onClick={this.props.onCancel}>Cancel</button>
+        <button type="button" onClick={this.handleCancel}>Cancel</button>
       </td>
     </tr>;
   }
