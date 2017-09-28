@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { ViewCarRow } from './view-car-row';
 import { EditCarRow } from './edit-car-row';
 
-export const Table = props => <table>
+export const CarTable = props => <table>
   <thead>
     <tr>
       <th>ID</th>
@@ -29,7 +29,7 @@ export const Table = props => <table>
 
 
 
-Table.propTypes = {
+CarTable.propTypes = {
   cars: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     make: PropTypes.string.isRequired,
@@ -38,13 +38,13 @@ Table.propTypes = {
     color: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   })).isRequired,
-  editCarId: PropTypes.number,
-  onSave: PropTypes.func,
-  onDelete: PropTypes.func,
-  onEdit: PropTypes.func,
-  onCancel: PropTypes.func,
+  editCarId: PropTypes.number.isRequired,
+  saveCar: PropTypes.func.isRequired,
+  deleteCar: PropTypes.func.isRequired,
+  editCar: PropTypes.func.isRequired,
+  cancelCar: PropTypes.func.isRequired,
 };
 
-Table.defaultProps = {
+CarTable.defaultProps = {
   editCarId: 0,
 };

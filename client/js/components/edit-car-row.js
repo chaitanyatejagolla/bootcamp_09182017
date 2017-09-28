@@ -1,61 +1,49 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { BaseForm } from './base-form';
-export class EditCarRow extends BaseForm {
 
-  static propTypes = {
-    onSave: PropTypes.func,
-    onCancel: PropTypes.func,
-    car: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      make: PropTypes.string.isRequired,
-      model: PropTypes.string.isRequired,
-      year: PropTypes.number.isRequired,
-      color: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-    }),
+export const EditCarRow = props => {
+
+  let carInput ={};
+
+  const handleSave = () => {
+    props.onSave({
+      make: carInput.make.value,
+      model: carInput.model.value,
+      year: Number(carInput.year.value),
+      color: carInput.color.value,
+      price: Number(carInput.price.value),
+      id: props.car.id,
+    });
   };
 
-  emptyForm = () => ({
-    make: '',
-    model: '',
-    year: 0,
-    color: '',
-    price: 0,
-  });
+  const handleCancel = () => {
+    props.onCancel();
+  };
 
-  constructor(props) {
-    super(props);
-    if (this.props.car) {
-      this.state = { ...this.props.car };
-    } else {
-      this.state = this.emptyForm();
-    }
-  }
+  return <tr>
+    <td>{props.car.id}</td>
+    <td> <input type="text" ref={input => carInput.make = input} defaultValue={props.car.make} /></td>
+    <td> <input type="text" ref={input => carInput.model = input} defaultValue={props.car.model} /></td>
+    <td> <input type="number" ref={input => carInput.year = input} defaultValue={props.car.year} /></td>
+    <td> <input type="color" ref={input => carInput.color = input} defaultValue={props.car.color} /></td>
+    <td> <input type="number" ref={input => carInput.price = input} defaultValue={props.car.price} /></td>
+    <td>
+      <button type="button" onClick={handleSave}>Save</button>
+      <button type="button" onClick={handleCancel}>Cancel</button>
+    </td>
+  </tr>;
+};
 
-  handleSave = () => {
-    this.props.onSave({
-      ...this.state,
-      id: this.props.car.id,
-    });
-  }
+EditCarRow.propTypes = {
+  onSave: PropTypes.func,
+  onCancel: PropTypes.func,
+  car: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    make: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }),
+};
 
-  handleCancel = () => {
-    this.props.onCancel();
-  }
-
-  render() {
-    return <tr>
-      <td>{this.props.car.id}</td>
-      <td> <input type="text" value={this.state.make} name='make' onChange={this.handleChange} /></td>
-      <td> <input type="text" value={this.state.model} name='model' onChange={this.handleChange} /></td>
-      <td> <input type="number" value={this.state.year} name='year' onChange={this.handleChange} /></td>
-      <td> <input type="color" value={this.state.color} name='color' onChange={this.handleChange} /></td>
-      <td> <input type="number" value={this.state.price} name='price' onChange={this.handleChange} /></td>
-      <td>
-        <button type="button" onClick={this.handleSave}>Save</button>
-        <button type="button" onClick={this.handleCancel}>Cancel</button>
-      </td>
-    </tr>;
-  }
-}
